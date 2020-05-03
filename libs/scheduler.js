@@ -1,6 +1,5 @@
 'use strict';
 
-const assert = require('assert').strict;
 const { EventEmitter } = require('events');
 
 class Task extends EventEmitter {
