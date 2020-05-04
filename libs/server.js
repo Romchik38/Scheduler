@@ -26,8 +26,11 @@ const parseParam = param => {
   const res = param.split('&')
     .map(e => e.split('='))
     .reduce((hash, arr) => (hash[arr[0]] = arr[1], hash), {});
-  const { name, timeout } = res;
-  return [name, timeout];
+  const { name, timeout, interval } = res;
+  if (timeout && interval) return undefined;
+  const invalidDate = new Date(timeout).toString() === 'Invalid Date';
+  if (timeout && invalidDate) return undefined;
+  return timeout ? [name, timeout] : [name, parseInt(interval)];
 };
 
 const parseUrl = url => {

@@ -7,13 +7,20 @@ const rf2 = readFile.bind(null, './files/2.txt');
 const api = {
   read2txt: async (name, timeout) => {
     if (name && timeout) {
-      const time = parseInt(timeout)
-      const task = scheduler.task(name, time, rf2);
+      const task = scheduler.task(name, timeout, rf2);
       if (task.active) return 'ok';
       else return 'task not active';
     }
     return 'bad parameters';
-  }
+  },
+  stopAll: async (name) => {
+    return scheduler.stopAll();
+  },
+  stop: async name => {
+    const res = scheduler.stop(name);
+    if (res) return `Task ${name} is stopped`;
+    else return `Task ${name} is not found`;
+  },
 };
 
 module.exports = { api }

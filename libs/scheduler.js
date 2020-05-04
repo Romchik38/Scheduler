@@ -27,7 +27,7 @@ class Task extends EventEmitter {
     this.stop();
     if (this.running) return false;
     const time = this.time - Date.now();
-    if (time < 0) return false;
+    if (time < 0 || !time) return false;
     this.timer = this.set(() => {
       this.run();
     }, time);
@@ -75,12 +75,19 @@ class Scheduler extends EventEmitter {
     if (task) {
       task.stop();
       this.tasks.delete(name);
+      return true;
     }
+    return false;
   }
   stopAll() {
+    let count = 0;
+    let names = '';
     for (const name of this.tasks.keys()) {
       this.stop(name);
+      ++count;
+      names.length === 0 ? names += `\n${name}` : names += name;
     }
+    return `stopped ${count} task(s):${names}`;
   }
 }
 
