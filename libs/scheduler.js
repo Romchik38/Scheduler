@@ -91,8 +91,4 @@ class Scheduler extends EventEmitter {
   }
 }
 
-// Scheduler.on('error', (err, task) => {
-//   console.log(err.message, task.name);
-// });
-
 module.exports = { Scheduler };
