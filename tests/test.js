@@ -17,10 +17,24 @@ const startTask = async next => {
   } catch (e) {
     assert.fail(e, 'Error with get request on startTask');
   }
-
 };
 
-const tests = [startTask];
+const stopTask = async next => {
+  const url = 'http://localhost:8001/api/stop?name=read2';
+  try {
+    const res = await client(url);
+    try {
+      assert.strictEqual(res, 'Task read2 is stopped');
+      next();
+    } catch (e) {
+      next(e);
+    }
+  } catch (e) {
+    assert.fail(e, 'Error with get request on stopTask');
+  }
+};
+
+const tests = [startTask, stopTask];
 
 require('../index.js');
 runner.start(tests);

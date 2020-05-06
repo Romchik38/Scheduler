@@ -1,0 +1,27 @@
+{
+  "name": "scheduler",
+  "version": "1.0.0",
+  "description": "scheduler with http (get) api",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node tests/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Romchik38/Scheduler.git"
+  },
+  "keywords": [
+    "scheduler",
+    "http",
+    "fs"
+  ],
+  "author": "Romchik38",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Romchik38/Scheduler/issues"
+  },
+  "homepage": "https://github.com/Romchik38/Scheduler#readme"
+}
